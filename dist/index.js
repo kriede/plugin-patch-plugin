@@ -9,6 +9,8 @@ export class PluginPatchPlugin {
      * @param {Function|string} pluginIdentifier Either the plugin’s constructor (class) or its constructor name as a string.
      * @param {object} patchOption The fields you want to override/merge into the original options.
      * @param {string} [hookName='environment'] The name of the compiler hook to tap into (e.g., 'environment', 'afterEnvironment').
+     *
+     * @see {@link https://webpack.js.org/api/compiler-hooks/} for a list of available hooks.
      */
     constructor(pluginIdentifier, patchOptions, hookName) {
         this.pluginIdentifier = pluginIdentifier;
@@ -22,7 +24,7 @@ export class PluginPatchPlugin {
     apply(compiler) {
         const hook = compiler.hooks[this.hookName];
         if (!hook || typeof hook.tap !== 'function') {
-            throw new Error(`PluginPatchPlugin: Hook '${this.hookName}' is not available.`);
+            throw new Error(`PluginPatchPlugin: Hook '${this.hookName}' is not available. See https://webpack.js.org/api/compiler-hooks/ for a list of available hooks.`);
         }
         hook.tap('PatchPluginOptions', () => {
             compiler.options.plugins = compiler.options.plugins.map(plugin => {

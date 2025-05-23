@@ -10,6 +10,8 @@ export declare class PluginPatchPlugin {
      * @param {Function|string} pluginIdentifier Either the plugin’s constructor (class) or its constructor name as a string.
      * @param {object} patchOption The fields you want to override/merge into the original options.
      * @param {string} [hookName='environment'] The name of the compiler hook to tap into (e.g., 'environment', 'afterEnvironment').
+     *
+     * @see {@link https://webpack.js.org/api/compiler-hooks/} for a list of available hooks.
      */
     constructor(pluginIdentifier: Function | string, patchOptions: any, hookName: keyof Compiler['hooks']);
     /**

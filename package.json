@@ -1,11 +1,14 @@
 {
   "name": "plugin-patch-plugin",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "license": "MIT",
   "description": "Patch options of a Webpack plugin after the environment has been set up",
   "author": "Kurt Riede <kurt.riede@web.de> (https://github.com/kriede)",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kriede/plugin-patch-plugin.git"
@@ -25,14 +28,13 @@
   ],
   "scripts": {
     "security": "npm audit --omit=dev",
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "pack": "npm pack",
+    "login": "npm login",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
-    "typescript": "^5.8.3",
-    "webpack": "^5.99.9"
-  },
-  "dependencies": {
-    "mini-css-extract-plugin": "^2.9.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "webpack": "^5.0.0"

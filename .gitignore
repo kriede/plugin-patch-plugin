@@ -3,15 +3,9 @@
 # dependencies
 /node_modules
 
-# generated directory
-**/generated
-
 # output directory
-/out
+**/dist
+**/types
 
-# msbuild output directories
-/bin
-/obj
-
-# MSBuild Binary and Structured Log
-*.binlog
+# npm tar files
+*.tgz
