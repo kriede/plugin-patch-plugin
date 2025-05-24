@@ -1,3 +1,4 @@
+[![License: MIT][license]][license-url]
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
 [![issues][issues]][issues-url]
@@ -72,6 +73,8 @@ At runtime, after the The PluginPatchPlugin has been run, the plugins array of y
   ]
 ````
 
+[license]: https://img.shields.io/badge/License-MIT-green.svg
+[license-url]: https://opensource.org/licenses/MIT
 [npm]: https://img.shields.io/npm/v/plugin-patch-plugin.svg
 [npm-url]: https://npmjs.com/package/plugin-patch-plugin
 [node]: https://img.shields.io/node/v/plugin-patch-plugin.svg
