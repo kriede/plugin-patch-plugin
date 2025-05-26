@@ -14,6 +14,11 @@ This plugin is usefull in many situations, e.g. if the primary webpack configura
 > [!CAUTION]
 > Use this plugin with caution! Using this plugin might cause huge side-effects and could break your build process. 
 
+## Peer dependencies
+
+This plugin requires [Webpack 5](https://webpack.js.org/) as peer dependency, older versions of Webpack are not supported.
+If you don't use webpack or if you do not intend to use it, this plugin is not of any use for you.
+
 ## Getting Started
 
 To begin, you'll need to install `plugin-patch-plugin`:
@@ -36,11 +41,11 @@ pnpm add -D plugin-patch-plugin
 
 ## Plugin Arguments
 
-| Name             | Type               | Explanation |
-| ---------------- | ------------------ | - | 
-| pluginIdentifier | Function \| string | Either the plugin’s constructor (class) or its constructor name as a string. |
-| patchOption      | object             | The new options you want to override/merge for the patched plugin.<br> Review the [documentation of the plugin](https://webpack.js.org/plugins/) that you want to patch. You can provide all or any subset of the options of the target plugin. The provided options will be merged with the options of the existing plugin before replacing it with a new instance of the plugin based on the new options.|
-| hookName         | string             | Optional name of the compiler hook to tap into, defaults to 'environment'.<br> See https://webpack.js.org/api/compiler-hooks/ for a list of available hooks. |
+| Name             | Type                     | Explanation |
+| ---------------- | ------------------------ | - | 
+| pluginIdentifier | Function \| string       | Either the plugin’s constructor (class) or its constructor name as a string. |
+| patchOption      | Function \| object \| [] | The new options you want to override/merge for the patched plugin.<br> Review the [documentation of the plugin](https://webpack.js.org/plugins/) that you want to patch. You can either provide an array of arguments for plugin's contructor, or an options object if the plugin is configured by a single argument being an object of options, or you can provide a function returning either of them. In case of an options object, the provided options will be merged with the options of the existing plugin. |
+| hookName         | string                   | Optional name of the compiler hook to tap into, defaults to 'environment'.<br> See https://webpack.js.org/api/compiler-hooks/ for a list of available hooks. |
 
 ## Example
 
@@ -71,6 +76,46 @@ At runtime, after the The PluginPatchPlugin has been run, the plugins array of y
         maxChunks: 10
     })
   ]
+````
+
+## Usage patterns
+
+Depending on the patched plugin and your specific requirements, choose one fo the four possible usage patterns:
+
+### 1. Options object 
+
+```` javascript
+    new PluginPatchPlugin(plugin.constructor, {
+        option1: value1,
+        option2: value2,
+    })
+````
+
+### 2. Function returning an options object
+
+```` javascript
+    new PluginPatchPlugin(plugin.constructor, () => {
+        option1: value1,
+        option2: value2,
+    })
+````
+
+### 3. arguments list 
+
+```` javascript
+    new PluginPatchPlugin(plugin.constructor, [
+        arg1,
+        arg2
+    ])
+````
+
+### 4. Function returning an arguments list
+
+```` javascript
+    new PluginPatchPlugin(plugin.constructor, () => {
+        arg1,
+        arg2
+    })
 ````
 
 [license]: https://img.shields.io/badge/License-MIT-green.svg
